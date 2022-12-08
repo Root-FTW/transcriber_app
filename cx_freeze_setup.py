@@ -1,15 +1,23 @@
-import sys
+# Importamos las funciones `setup` y `Executable`
+# de la biblioteca `cx_Freeze`.
 from cx_Freeze import setup, Executable
 
-# Dependencies are automatically detected, but it might need fine tuning.
-# "packages": ["os"] is used as example only
-build_exe_options = {"packages": ["flet", "torch"], "includes": ["sys"]}
+# Definimos un diccionario con las opciones
+# para construir el ejecutable.
+build_exe_options = {
+    "packages": ["flet", "torch"],
+    "includes": ["sys"],
+}
 
-# base="Win32GUI" should be used only for Windows GUI app
+# Definimos la variable `base` como `None`, lo que indica
+# que el ejecutable no es una aplicación de interfaz gráfica
+# de usuario. Si el sistema operativo es Windows, entonces
+# `base` se establece en `"Win32GUI"`.
 base = None
 if sys.platform == "win32":
     base = "Win32GUI"
 
+# Llamamos a la función `setup` para construir el ejecutable.
 setup(
     name="guifoo",
     version="0.1",
